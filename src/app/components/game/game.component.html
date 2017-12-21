@@ -1,0 +1,21 @@
+<main>
+  <table>
+    <thead>
+    <tr>
+      <td>Order</td>
+      <td>Name</td>
+      <td>Gift</td>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let p of participants; let i = index;">
+      <td>{{ p.order }}</td>
+      <td>{{ p.name }}</td>
+      <td (click)="showInput()">
+        <span *ngIf="p.gift !== ''">{{ p.gift }}</span>
+        <input *ngIf="p.gift === ''" class="gift-input" type="text" [(ngModel)]="gift" (blur)="saveGift(i)">
+      </td>
+    </tr>
+    </tbody>
+  </table>
+</main>

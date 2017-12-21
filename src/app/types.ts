@@ -1,9 +1,11 @@
 export interface IParticipant {
+  order: number;
   name: string;
   gift: string;
 }
 
 export class Participant implements IParticipant {
+  order: number = null;
   name: string = '';
   gift: string = '';
 

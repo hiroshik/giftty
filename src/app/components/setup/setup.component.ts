@@ -5,7 +5,7 @@ import {shuffle} from "../../utilities";
 @Component({
   selector: 'app-setup',
   templateUrl: './setup.component.html',
-  styleUrls: ['./setup.component.css']
+  styleUrls: ['./setup.component.scss']
 })
 export class SetupComponent implements OnInit {
 
@@ -18,14 +18,17 @@ export class SetupComponent implements OnInit {
   ngOnInit() {
   }
 
-  saveTotal() {
-    localStorage.setItem('total', this.total_number.toString());
+  reset(): void {
+    this.participants = [];
+    localStorage.removeItem('participants');
   }
+
 
   addParticipant(): void {
     if (this.participant.name !== '') {
       this.participants.push(this.participant);
       this.participant = new Participant();
+      this.total_number = this.participants.length;
     }
   }
 
@@ -41,4 +44,6 @@ export class SetupComponent implements OnInit {
   saveToStorage(key: string, value: string): void {
     localStorage.setItem(key, value);
   }
+
+
 }
