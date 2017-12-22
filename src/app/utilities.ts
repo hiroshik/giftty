@@ -16,3 +16,7 @@ export function shuffle(array: any[]) {
 
   return array;
 }
+
+export function randomIntegerInRange(min: number, max: number): number {
+  return Math.ceil(Math.random() * (max - min)) + min;
+}

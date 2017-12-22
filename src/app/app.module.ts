@@ -6,6 +6,7 @@ import { SetupComponent } from './components/setup/setup.component';
 import {AppRoutes} from "./app.route";
 import {FormsModule} from "@angular/forms";
 import { GameComponent } from './components/game/game.component';
+import {StorageService} from "./servives/storage.service";
 
 @NgModule({
   declarations: [
@@ -18,7 +19,9 @@ import { GameComponent } from './components/game/game.component';
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    StorageService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

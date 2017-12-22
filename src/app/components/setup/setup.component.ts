@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Participant} from "../../types";
 import {shuffle} from "../../utilities";
+import {StorageService} from "../../servives/storage.service";
 
 @Component({
   selector: 'app-setup',
@@ -13,23 +14,25 @@ export class SetupComponent implements OnInit {
   participant: Participant = new Participant();
   participants: Participant[] = [];
 
-  constructor() { }
+  constructor(private storageService: StorageService) { }
 
   ngOnInit() {
   }
 
   reset(): void {
     this.participants = [];
-    localStorage.removeItem('participants');
+    this.storageService.remove('participants');
   }
 
 
   addParticipant(): void {
     if (this.participant.name !== '') {
+      this.participant.id = this.participants.length + 1;
       this.participants.push(this.participant);
       this.participant = new Participant();
       this.total_number = this.participants.length;
     }
+    console.log(this.participants);
   }
 
   assignOrder(): void {
@@ -37,13 +40,10 @@ export class SetupComponent implements OnInit {
     this.participants.forEach((p, i) => {
       p['order'] = i + 1;
     });
-    console.log(this.participants);
-    this.saveToStorage('participants', JSON.stringify(this.participants));
+    this.storageService.save('participants', JSON.stringify(this.participants));
   }
 
-  saveToStorage(key: string, value: string): void {
-    localStorage.setItem(key, value);
-  }
+
 
 
 }
