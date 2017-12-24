@@ -1,33 +1,26 @@
-<main>
+<main class="section-game">
   <table>
-    <thead>
-    <tr>
-      <td>Order</td>
-      <td>Name</td>
-      <td>Gift</td>
-    </tr>
-    </thead>
     <tbody>
-    <tr *ngFor="let p of participants; let i = index;">
-      <td>{{ p.order }}</td>
-      <td [attr.data-id]="p.id">{{ p.name }}</td>
-      <td  *ngIf="p.gift !== ''">
-        <span (click)="showInput(p)">{{ p.gift }}</span>
-        <button *ngIf="(!p.giftStatus && i !== 0) || (firstCanSteal && i === 0)" (click)="keepGift(p)">Keep It</button>
-        <button *ngIf="(!p.giftStatus && i !== 0) || (firstCanSteal && i === 0)" (click)="generateStealingPool(p)">Steal!</button>
-      </td>
-      <td *ngIf="p.gift === ''">
-        <input class="gift-input" type="text" [(ngModel)]="p.giftInput" (keyup.enter)="saveGift(i)">
-      </td>
-    </tr>
+      <tr *ngFor="let p of participants; let i = index;">
+        <td class="column-order"><span class="order">{{ p.order }}</span></td>
+        <td class="column-name" [attr.data-id]="p.id">{{ p.name }}</td>
+        <td class="column-gift" *ngIf="p.gift !== ''">
+          <span class="gift" (click)="showInput(p)">{{ p.gift }}</span>
+          <button class="btn-small" *ngIf="(!p.giftStatus && i !== 0) || (firstCanSteal && i === 0)" (click)="generateStealingPool(p)">Steal!</button>
+          <button class="btn-small" *ngIf="(!p.giftStatus && i !== 0) || (firstCanSteal && i === 0)" (click)="keepGift(p)">Keep It</button>
+        </td>
+        <td *ngIf="p.gift === ''">
+          <input class="gift-input" type="text" [(ngModel)]="p.giftInput" (keyup.enter)="saveGift(i)" placeholder="gift">
+        </td>
+      </tr>
     </tbody>
   </table>
 
-  <div class="stealing-pool">
+  <div class="stealing-pool" [class.visible]="steallingMode">
     <ul>
       <li *ngFor="let target of stealingPool" [attr.data-id]="target.id">
-        {{ target.name }} | {{ target.gift }}
-        <button (click)="stealGift(target)">Steal this</button>
+        <span class="name">{{ target.name }}</span> {{ target.gift }}
+        <button class="btn-small" (click)="stealGift(target)">Steal this</button>
       </li>
     </ul>
   </div>

@@ -1,0 +1,58 @@
+.section-setup {
+  .setup-fixture {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+
+    li {
+      margin: 10px 0;
+
+      .order {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        background: #fff;
+        color: #000;
+        border-radius: 50%;
+        font-size: 12px;
+        vertical-align: top;
+        line-height: 20px;
+        font-weight: 700;
+        text-align: center;
+      }
+    }
+  }
+
+  .setup-box {
+    input {
+      background: none;
+      border: none;
+      border-bottom: #beedf9 1px solid;
+      width: 100%;
+      display: block;
+      outline: none;
+      font-size: 14px;
+      padding: 10px 0;
+      margin: 20px 0;
+      color: #FFFFFF;
+      text-align: center;
+    }
+  }
+
+  .setup-control {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px 15px;
+    left: 0;
+    box-sizing: border-box;
+
+    &::after {
+      clear: both;
+    }
+    .btn-reset {
+      float: right;
+    }
+  }
+}

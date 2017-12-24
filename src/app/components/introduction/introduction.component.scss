@@ -1,0 +1,22 @@
+.section-intro {
+  text-align: center;
+
+  i {
+    font-weight: 700;
+    text-decoration: underline;
+  }
+
+  ol {
+    font-size: 16px;
+    padding: 0 0 0 20px;
+
+    li {
+      margin-bottom: 10px;
+      text-align: left;
+    }
+  }
+
+  button {
+    margin: 20px 0;
+  }
+}

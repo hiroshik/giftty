@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from "@angular/router";
-import {Participant} from "../../types";
-import {StorageService} from "../../servives/storage.service";
-import {randomIntegerInRange} from "../../utilities";
+import { Router } from '@angular/router';
+import { Participant } from '../../types';
+import { StorageService } from '../../servives/storage.service';
+import { randomIntegerInRange } from '../../utilities';
 
 @Component({
   selector: 'app-game',
@@ -16,6 +16,7 @@ export class GameComponent implements OnInit {
   stealingPool: Participant[];
   currentParticipant: Participant;
   firstCanSteal: boolean = false;
+  steallingMode: boolean = false;
 
   constructor(
     private router: Router,
@@ -28,10 +29,7 @@ export class GameComponent implements OnInit {
   }
 
   ngOnInit() {
-    if (this.participants[this.participants.length - 1].hasOwnProperty('giftStatus')
-      && !this.participants[0].hasOwnProperty('giftStatus')) {
-      this.firstCanSteal = true;
-    }
+    this.checkFirstStatus();
   }
 
   saveGift(index: number): void {
@@ -49,12 +47,14 @@ export class GameComponent implements OnInit {
 
   keepGift(participant: Participant): void {
     participant['giftStatus'] = 'keep';
+    this.checkFirstStatus();
     this.saveToStorage();
   }
 
   generateStealingPool(participant: Participant): void {
     this.currentParticipant = participant;
     this.resetStealingPool();
+    this.steallingMode = true;
 
     // Get array of {Participant} who have a gift
     const haveGift: Participant[] = this.participants.filter((p, i) => { return p.gift !== '' && p.id !== participant.id; });
@@ -79,11 +79,18 @@ export class GameComponent implements OnInit {
     });
 
     this.stealingPool = [];
+    this.steallingMode = false;
+    this.checkFirstStatus();
     this.saveToStorage();
   }
 
   saveToStorage(): void {
+    console.log(this.participants);
     this.storageService.save('participants', JSON.stringify(this.participants));
+  }
+
+  checkFirstStatus(): void {
+    this.firstCanSteal = this.participants[this.participants.length - 1].hasOwnProperty('giftStatus') && !this.participants[0].hasOwnProperty('giftStatus');
   }
 
   resetStealingPool(): void {

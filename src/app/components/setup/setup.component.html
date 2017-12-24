@@ -1,28 +1,19 @@
-<main>
-  <table>
-    <thead>
-      <tr>
-        <td>Order</td>
-        <td>Name</td>
-        <td>Gift</td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let p of participants">
-        <td>{{ p.order }}</td>
-        <td>{{ p.name }}</td>
-        <td>{{ p.gift }}</td>
-      </tr>
-    </tbody>
-  </table>
+<main class="section-setup">
+  <ul class="setup-fixture">
+    <li *ngFor="let p of participants">
+      <span class="order" *ngIf="p.order">{{ p.order }}</span>
+      <span class="name">{{ p.name }}</span>
+    </li>
+  </ul>
 
-  <div>
-    <label>Name <input type="text" name="name" [(ngModel)]="participant.name" /></label>
-    <button (click)="addParticipant()">Add Participant</button>
+  <div class="setup-box">
+    <input type="text" name="name" [(ngModel)]="participant.name"  placeholder="Add Participant" (keyup.enter)="addParticipant()"/>
+    <!--<button (click)="addParticipant()">Add Participant</button>-->
   </div>
 
-  <hr>
-
-  <button (click)="assignOrder()">Assign Orders</button>
-  <button (click)="reset()">Reset</button>
+  <div class="setup-control">
+    <button (click)="assignOrder()" *ngIf="!orderAssigned">Draw Orders</button>
+    <button [routerLink]="['/game']" *ngIf="orderAssigned">Game Start</button>
+    <button class="btn-reset" (click)="reset()">Reset</button>
+  </div>
 </main>

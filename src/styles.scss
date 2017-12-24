@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css?family=Montez|Roboto:300,400,700');
+
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+html, body {
+}
+
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #2f296b;
+  color: #FFFFFF;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+}
+
+main {
+  width: 100%;
+  padding: 0 15px;
+  box-sizing: border-box;
+}
+
+h1{
+  font-family: 'Montez', cursive;
+  margin: 0;
+  font-size: 36px;
+  padding: 20px 0;
+}
+
+h2 {
+  font-size: 24px;
+  text-align: center;
+  font-weight: 400;
+}
+
+button {
+  transition: color .1s ease-out,background-color .1s ease-out,border-color .1s ease-out;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 14px;
+  outline: none;
+  color: #FFFFFF;
+  background-image: linear-gradient(90deg,#ad59ff,#7659ff);
+  border: none;
+  line-height: 1.6;
+
+  &.btn-small {
+    padding: 5px;
+    font-size: 12px;
+    margin: 0 5px;
+  }
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}

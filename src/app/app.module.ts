@@ -2,17 +2,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
+import { AppRoutes } from './app.route';
+import { FormsModule } from '@angular/forms';
+
+import { HeaderComponent } from './components/header/header.component';
+import { IntroductionComponent } from './components/introduction/introduction.component';
 import { SetupComponent } from './components/setup/setup.component';
-import {AppRoutes} from "./app.route";
-import {FormsModule} from "@angular/forms";
 import { GameComponent } from './components/game/game.component';
-import {StorageService} from "./servives/storage.service";
+
+import { StorageService } from './servives/storage.service';
 
 @NgModule({
   declarations: [
     AppComponent,
     SetupComponent,
-    GameComponent
+    GameComponent,
+    HeaderComponent,
+    IntroductionComponent
   ],
   imports: [
     AppRoutes,

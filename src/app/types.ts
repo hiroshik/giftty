@@ -10,6 +10,7 @@ export class Participant implements IParticipant {
   order: number = null;
   name: string = '';
   gift: string = '';
+  giftInput: string = '';
 
   constructor(name: string = '', gift: string = '') {
     this.name = name;

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Participant} from "../../types";
-import {shuffle} from "../../utilities";
-import {StorageService} from "../../servives/storage.service";
+import { Participant } from '../../types';
+import { shuffle } from '../../utilities';
+import { StorageService } from '../../servives/storage.service';
 
 @Component({
   selector: 'app-setup',
@@ -13,6 +13,7 @@ export class SetupComponent implements OnInit {
   total_number: number = 0;
   participant: Participant = new Participant();
   participants: Participant[] = [];
+  orderAssigned: boolean = false;
 
   constructor(private storageService: StorageService) { }
 
@@ -36,14 +37,16 @@ export class SetupComponent implements OnInit {
   }
 
   assignOrder(): void {
-    this.participants = shuffle(this.participants);
-    this.participants.forEach((p, i) => {
-      p['order'] = i + 1;
-    });
-    this.storageService.save('participants', JSON.stringify(this.participants));
+    if (this.participants.length > 0) {
+      this.orderAssigned = true
+      this.participants = shuffle(this.participants);
+      this.participants.forEach((p, i) => {
+        p['order'] = i + 1;
+      });
+      this.storageService.save('participants', JSON.stringify(this.participants));
+    } else {
+      // TODO: error message
+    }
+
   }
-
-
-
-
 }
