@@ -16,9 +16,9 @@ import { StorageService } from './servives/storage.service';
   declarations: [
     AppComponent,
     SetupComponent,
+    IntroductionComponent,
     GameComponent,
-    HeaderComponent,
-    IntroductionComponent
+    HeaderComponent
   ],
   imports: [
     AppRoutes,

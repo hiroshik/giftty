@@ -1,8 +1,9 @@
 <main class="section-setup">
   <ul class="setup-fixture">
-    <li *ngFor="let p of participants">
+    <li *ngFor="let p of participants; let i = index ">
       <span class="order" *ngIf="p.order">{{ p.order }}</span>
       <span class="name">{{ p.name }}</span>
+      <span class="remove-participant" *ngIf="!orderAssigned" (click)="removeParticipant(i)"></span>
     </li>
   </ul>
 

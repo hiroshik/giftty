@@ -28,17 +28,24 @@ export class SetupComponent implements OnInit {
 
   addParticipant(): void {
     if (this.participant.name !== '') {
-      this.participant.id = this.participants.length + 1;
       this.participants.push(this.participant);
       this.participant = new Participant();
       this.total_number = this.participants.length;
+
+      // Reassign id for current array
+      this.participants.map((p, i) => {
+        return p.id = i + 1;
+      });
     }
-    console.log(this.participants);
+  }
+
+  removeParticipant(index: number): void {
+    this.participants.splice(index, 1);
   }
 
   assignOrder(): void {
     if (this.participants.length > 0) {
-      this.orderAssigned = true
+      this.orderAssigned = true;
       this.participants = shuffle(this.participants);
       this.participants.forEach((p, i) => {
         p['order'] = i + 1;

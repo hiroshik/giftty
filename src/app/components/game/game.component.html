@@ -11,6 +11,7 @@
         </td>
         <td *ngIf="p.gift === ''">
           <input class="gift-input" type="text" [(ngModel)]="p.giftInput" (keyup.enter)="saveGift(i)" placeholder="gift">
+          <span class="checkmark" *ngIf="p.giftInput.length > 0" (click)="saveGift(i)"></span>
         </td>
       </tr>
     </tbody>
