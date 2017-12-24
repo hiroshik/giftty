@@ -54,5 +54,15 @@
     .btn-reset {
       float: right;
     }
+
+    @media (min-width: 768px) {
+      width: 640px;
+      left: calc(50% - 320px);
+    }
+
+    @media (min-width: 992px) {
+      width: 768px;
+      left: calc(50% - 384px);
+    }
   }
 }
